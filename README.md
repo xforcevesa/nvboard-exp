@@ -6,6 +6,8 @@
 
 NVBoard(NJU Virtual Board)是基于SDL开发的虚拟FPGA开发板，可以在Verilator仿真环境中模拟FPGA，支持LED，七段数码管，拨码开关，UART，键盘和VGA。
 
+本仓库下ex1、ex2、ex3、ex7、ex8四个目录，均为[一生一芯项目预学习作业](https://ysyx.oscc.cc/docs/2306/preliminary/0.5.html)。可进入目录后```make run```完成。
+
 ## 项目文件说明
 
 ```
