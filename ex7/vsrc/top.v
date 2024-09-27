@@ -66,18 +66,41 @@ ps2_keyboard my_keyboard(
     .ps2_data(ps2_data)
 );
 
-seg my_seg(
+// seg my_seg(
+//     .clk(clk),
+//     .rst(rst),
+//     .o_seg0(seg0),
+//     .o_seg1(seg1),
+//     .o_seg2(seg2),
+//     .o_seg3(seg3),
+//     .o_seg4(seg4),
+//     .o_seg5(seg5),
+//     .o_seg6(seg6),
+//     .o_seg7(seg7)
+// );
+// enc_seg my_enc_seg(
+//     .data(sw[7:0]),
+//     .en(sw[8]),
+//     .seg(seg0)
+// );
+// alu_seg my_alu_seg(
+//     .opa(sw[3:0]),
+//     .opb(sw[7:4]),
+//     .code(sw[10:8]),
+//     .en(sw[11]),
+//     .seg1(seg0),
+//     .seg2(seg1)
+// );
+rnd_seg my_rnd_seg(
     .clk(clk),
+    .seed(sw[7:0]),
     .rst(rst),
-    .o_seg0(seg0),
-    .o_seg1(seg1),
-    .o_seg2(seg2),
-    .o_seg3(seg3),
-    .o_seg4(seg4),
-    .o_seg5(seg5),
-    .o_seg6(seg6),
-    .o_seg7(seg7)
+    .en(sw[8]),
+    .in(sw[9]),
+    .seg1(seg0),
+    .seg2(seg1)
 );
+
 
 vmem my_vmem(
     .h_addr(h_addr),

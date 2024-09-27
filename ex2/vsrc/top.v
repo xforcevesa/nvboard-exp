@@ -2,7 +2,7 @@ module top(
     input clk,
     input rst,
     input [4:0] btn,
-    input [9:0] sw,
+    input [11:0] sw,
     input ps2_clk,
     input ps2_data,
     input uart_rx,
