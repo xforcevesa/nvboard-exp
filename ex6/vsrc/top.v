@@ -59,14 +59,11 @@ vga_ctrl my_vga_ctrl(
     .vga_b(VGA_B)
 );
 
-reg [7:0] keycode;
-
 ps2_keyboard my_keyboard(
     .clk(clk),
     .resetn(~rst),
     .ps2_clk(ps2_clk),
-    .ps2_data(ps2_data),
-    .keycode(keycode)
+    .ps2_data(ps2_data)
 );
 
 // seg my_seg(
@@ -94,24 +91,14 @@ ps2_keyboard my_keyboard(
 //     .seg1(seg0),
 //     .seg2(seg1)
 // );
-// rnd_seg my_rnd_seg(
-//     .clk(clk),
-//     .seed(sw[7:0]),
-//     .rst(rst),
-//     .en(sw[8]),
-//     .in(sw[9]),
-//     .seg1(seg0),
-//     .seg2(seg1)
-// );
-key_seg my_key_seg(
+rnd_seg my_rnd_seg(
     .clk(clk),
+    .seed(sw[7:0]),
     .rst(rst),
-    .keycode(keycode),
-    .en(sw[0]),
+    .en(sw[8]),
+    .in(sw[9]),
     .seg1(seg0),
-    .seg2(seg1),
-    .seg3(seg4),
-    .seg4(seg5)
+    .seg2(seg1)
 );
 
 

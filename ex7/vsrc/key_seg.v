@@ -6,7 +6,9 @@ module key_seg(
     output [7:0] seg1,
     output [7:0] seg2,
     output [7:0] seg3,
-    output [7:0] seg4
+    output [7:0] seg4,
+    output [7:0] seg5,
+    output [7:0] seg6
 );
 
 wire [7:0] segs [15:0];
@@ -27,14 +29,18 @@ assign segs[13] = 8'b01111011;
 assign segs[14] = 8'b10011111;
 assign segs[15] = 8'b10001111;
 
+reg [7:0] cnt;
 reg [7:0] counter;
 reg char_reg;
 reg [2:0] cc;
+reg [7:0] last_keycode;
 
 always @(posedge clk or negedge rst) begin
     if (rst) begin
         counter <= 8'b00000000;
         cc <= 3'b000;
+        cnt <= 8'b00000000;
+        last_keycode <= 8'b00000000;
     end else if (en) begin
         case (keycode)
             8'h0e: counter <= "~";
@@ -93,11 +99,15 @@ always @(posedge clk or negedge rst) begin
         char_reg <= counter[cc];
         cc <= cc + 1;
     end
+    if (keycode == 8'hf0 && last_keycode != keycode) cnt <= cnt + 1;
+    last_keycode <= keycode;
 end
 
 assign seg1 = ~segs[keycode[3:0]];
 assign seg2 = ~segs[keycode[7:4]];
 assign seg3 = ~segs[counter[3:0]];
 assign seg4 = ~segs[counter[7:4]];
+assign seg5 = ~segs[cnt[3:0]];
+assign seg6 = ~segs[cnt[7:4]];
 
 endmodule
