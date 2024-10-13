@@ -8,7 +8,8 @@ module key_seg(
     output [7:0] seg3,
     output [7:0] seg4,
     output [7:0] seg5,
-    output [7:0] seg6
+    output [7:0] seg6,
+    input tapped
 );
 
 wire [7:0] segs [15:0];
@@ -105,8 +106,8 @@ end
 
 assign seg1 = ~segs[keycode[3:0]];
 assign seg2 = ~segs[keycode[7:4]];
-assign seg3 = ~segs[counter[3:0]];
-assign seg4 = ~segs[counter[7:4]];
+assign seg3 = tapped ? ~segs[counter[3:0]] : ~segs[0];
+assign seg4 = tapped ? ~segs[counter[7:4]] : ~segs[0];
 assign seg5 = ~segs[cnt[3:0]];
 assign seg6 = ~segs[cnt[7:4]];
 

@@ -60,13 +60,15 @@ vga_ctrl my_vga_ctrl(
 );
 
 reg [7:0] keycode;
+reg tapped;
 
 ps2_keyboard my_keyboard(
     .clk(clk),
     .resetn(~rst),
     .ps2_clk(ps2_clk),
     .ps2_data(ps2_data),
-    .keycode(keycode)
+    .keycode(keycode),
+    .tapped(tapped)
 );
 
 // seg my_seg(
@@ -113,7 +115,8 @@ key_seg my_key_seg(
     .seg3(seg4),
     .seg4(seg5),
     .seg5(seg6),
-    .seg6(seg7)
+    .seg6(seg7),
+    .tapped(tapped)
 );
 
 
